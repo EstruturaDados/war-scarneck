@@ -164,6 +164,8 @@ int main(){
 
     srand(time(NULL));
 
+
+    int final=0;
     do{
         // imprimindo territorios
         territoriosOutput(territorio);
@@ -177,8 +179,27 @@ int main(){
             battle(players);
         }
         
-    }while(1);
+        
+        if (final==0){
+            int end = 0;
+            for (int i = 1; i<NUM_TERR; i++){
+                if (strcmp(territorio[0].cor, territorio[i].cor) == 0){
+                    end++;
+                    if (end == NUM_TERR-1){
+                        printf("Parabéns! vitória do exercito '%s'.\n\n", territorio[i].cor);
+                        final++;
+                        break;
+                    }
+                    continue;
+                }else{
+                    printf("Sem vencedor.\n\n");
+                    break;
+                }
+            }
+        }else{
+            break;
+        }
 
-
+    }while(final==0);
     return 0;
 }
